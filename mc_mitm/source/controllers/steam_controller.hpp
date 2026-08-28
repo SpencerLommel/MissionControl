@@ -31,18 +31,45 @@ namespace ams::controller {
     };
 
     struct SteamButtonData {
+        // bit field[0] we ignore
 
+        // bit field[1]
         u8 A            : 1; // 0x01
         u8 B            : 1; // 0x02
         u8 X            : 1; // 0x04
         u8 Y            : 1; // 0x08
         u8 quick_access : 1; // 0x10
-        u8 R3           : 1; // 0x20  (right stick click)
+        u8 R3           : 1; // 0x20  (R3 stick press)
         u8 menu         : 1; // 0x40
         u8 R4           : 1; // 0x80
 
+        // bit field[2]
+        u8 R5           : 1; // 0x01
+        u8 R1           : 1; // 0x02
+        u8 dpad         : 4; // 0x04 S, 0x08 E, 0x10 W, 0x20 N
+        u8 view         : 1; // 0x40
+        u8 L3           : 1; // 0x80 (L3 stick press)
 
-    }
+        // bit field[3]
+        u8 steam        : 1; // 0x01
+        u8 L4           : 1; // 0x02
+        u8 L5           : 1; // 0x04
+        u8 L1           : 1; // 0x08
+        u8              : 1; // 0x10 (R3 stick capacative touch sense, not implemented)
+        u8              : 1; // 0x20 (Right pad touch sense, not implemented)
+        u8              : 1; // 0x40 unknown or unmapped?
+        u8 R2           : 1; // 0x80 (only active when trigger fully pulled)
+
+        // bit field[4]
+        u8              : 1; // 0x01 (L3 stick capacative touch sense, not implemented)
+        u8              : 1; // 0x02 (Left pad touch sense, not implemented)
+        u8              : 1; // 0x04 unknown or unmapped?
+        u8 L2           : 1; // 0x08 (only active when trigger fully pulled)
+        u8              : 1; // 0x10 (Right capacative grip sense)
+        u8              : 1; // 0x20 (Left capacative grip sense)
+        u8              : 2; // 0x40 unknown or unmapped?
+
+    } PACKED;
 
 
 }
